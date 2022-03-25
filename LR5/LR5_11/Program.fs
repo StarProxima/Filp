@@ -1,4 +1,13 @@
-﻿
+﻿open System
 
-// For more information see https://aka.ms/fsharp-console-apps
-printfn "Hello from F#"
+let choiseL str =
+    match str with
+    |"F#"|"Prolog"->"Подлиза"
+    |_->"!Подлиза"
+
+[<EntryPoint>]
+let main argv =
+    printfn "Какой ваш любимый язык программирования?"
+    let ans = Console.ReadLine()
+    Console.WriteLine(choiseL ans)
+    0 
