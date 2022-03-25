@@ -39,12 +39,11 @@ let multiplicationDownWithPredicate x predicate =
     md x 1
     
 
-// LR5_17.1- Обход делителей числа с условием
 let dividersFuncWithPredicate x predicate func init =
     let func1 init cur = if predicate cur then func init cur else init
     dividersFunc x func1 init
 
-
+let method3Func x = nod (dividersFuncWithPredicate x (fun x -> x%2 > 0 && not(prime x)) (fun x y -> max x y) 1) (multiplicationDownWithPredicate x (fun x -> true))
 
 [<EntryPoint>]
 let main argv =
@@ -61,9 +60,7 @@ let main argv =
     printfn "Result2: %d" method2
 
     //Найти НОД максимального нечетного непростого делителя числа и прозведения цифр данного числа.
-    let t1 = dividersFuncWithPredicate x (fun x -> x%2 > 0 && not(prime x)) (fun x y -> max x y) 1
-    let t2 = multiplicationDownWithPredicate x (fun x -> true)
-    let method3 = nod t1 t2
-    printfn "Result3: %d" method3
+    let method3 = method3Func x
+    printfn "Result3: %d" method3 
 
     0

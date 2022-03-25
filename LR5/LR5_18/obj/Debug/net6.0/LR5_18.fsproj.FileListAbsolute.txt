@@ -23,3 +23,4 @@ C:\GitHub\Filp\LR5\LR5_18\obj\Debug\net6.0\LR5_18.fsproj.CopyComplete
 C:\GitHub\Filp\LR5\LR5_18\obj\Debug\net6.0\LR5_18.dll
 C:\GitHub\Filp\LR5\LR5_18\obj\Debug\net6.0\LR5_18.pdb
 C:\GitHub\Filp\LR5\LR5_18\obj\Debug\net6.0\LR5_18.genruntimeconfig.cache
+C:\GitHub\Filp\LR5\LR5_18\obj\Debug\net6.0\LR5_18.fsproj.AssemblyReference.cache
