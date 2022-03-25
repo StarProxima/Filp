@@ -38,6 +38,18 @@ let primesFunc x func init =
             pf x func newInit newPrime
     pf x func init x
 
+// Произведение цифр числа, рекурсия вниз
+let multiplicationDownWithPredicate x predicate =
+    let rec md x cur =
+        if x = 0 then cur
+        else
+            let newCur = if predicate (x % 10) then cur * (x % 10) else cur
+            printfn "a: %d" newCur
+            let newX = x / 10
+            md newX newCur
+    md x 1
+    
+
 // LR5_17.1- Обход делителей числа с условием
 let dividersFuncWithPredicate x predicate func init =
     let func1 init cur = if predicate cur then func init cur else init
@@ -54,8 +66,12 @@ let main argv =
     printfn "Number: "
     let x = Console.ReadLine() |> Int32.Parse
 
-    //Сумма простых делителей числа
+    //Найти максимальный простой делитель числа.
     let method1 = dividersFuncWithPredicate x (fun x -> prime x) (fun x y -> max x y) 0
     printfn "Result1: %d" method1
+
+    //Найти произведение цифр числа, не делящихся на 5
+    let method2 = multiplicationDownWithPredicate x (fun x -> x % 5 > 0)
+    printfn "Result2: %d" method2
 
     0
