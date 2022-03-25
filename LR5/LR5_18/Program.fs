@@ -55,7 +55,7 @@ let main argv =
     let x = Console.ReadLine() |> Int32.Parse
 
     //Сумма простых делителей числа
-    let method1 = dividersFuncWithPredicate x (fun x -> prime x) (fun x y -> x + y) 0
+    let method1 = dividersFuncWithPredicate x (fun x -> prime x) (fun x y -> max x y) 0
     printfn "Result1: %d" method1
 
     0
