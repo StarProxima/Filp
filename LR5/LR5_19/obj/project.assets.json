@@ -113,19 +113,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\maksp\\.nuget\\packages\\": {}
+    "C:\\Users\\StarProxima\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\GitHub\\Filp\\LR5\\LR5_19\\LR5_19.fsproj",
+      "projectUniqueName": "C:\\Users\\StarProxima\\Documents\\GitHub\\Filp\\LR5\\LR5_19\\LR5_19.fsproj",
       "projectName": "LR5_19",
-      "projectPath": "C:\\GitHub\\Filp\\LR5\\LR5_19\\LR5_19.fsproj",
-      "packagesPath": "C:\\Users\\maksp\\.nuget\\packages\\",
-      "outputPath": "C:\\GitHub\\Filp\\LR5\\LR5_19\\obj\\",
+      "projectPath": "C:\\Users\\StarProxima\\Documents\\GitHub\\Filp\\LR5\\LR5_19\\LR5_19.fsproj",
+      "packagesPath": "C:\\Users\\StarProxima\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\StarProxima\\Documents\\GitHub\\Filp\\LR5\\LR5_19\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\maksp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\StarProxima\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -168,7 +168,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
