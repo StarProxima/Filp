@@ -28,23 +28,12 @@ let rec nod x y =
         let newY = if x <= y then y % x else y
         nod newX newY
 
-let primesFunc x func init =
-    let rec pf x func init curPrime =
-        if curPrime <= 0 then init
-            
-        else
-            let newInit = if nod x curPrime = 1 then func init curPrime else init
-            let newPrime = curPrime - 1
-            pf x func newInit newPrime
-    pf x func init x
-
 // Произведение цифр числа, рекурсия вниз
 let multiplicationDownWithPredicate x predicate =
     let rec md x cur =
         if x = 0 then cur
         else
             let newCur = if predicate (x % 10) then cur * (x % 10) else cur
-            printfn "a: %d" newCur
             let newX = x / 10
             md newX newCur
     md x 1
@@ -55,10 +44,7 @@ let dividersFuncWithPredicate x predicate func init =
     let func1 init cur = if predicate cur then func init cur else init
     dividersFunc x func1 init
 
-// LR5_17.2 - Обход взаимнопростых чисел с условием
-let primesFuncWithPredicate x predicate func init =
-    let func1 init cur = if predicate cur then func init cur else init
-    primesFunc x func1 init
+
 
 [<EntryPoint>]
 let main argv =
@@ -70,8 +56,14 @@ let main argv =
     let method1 = dividersFuncWithPredicate x (fun x -> prime x) (fun x y -> max x y) 0
     printfn "Result1: %d" method1
 
-    //Найти произведение цифр числа, не делящихся на 5
+    //Найти произведение цифр числа, не делящихся на 5.
     let method2 = multiplicationDownWithPredicate x (fun x -> x % 5 > 0)
     printfn "Result2: %d" method2
+
+    //Найти НОД максимального нечетного непростого делителя числа и прозведения цифр данного числа.
+    let t1 = dividersFuncWithPredicate x (fun x -> x%2 > 0 && not(prime x)) (fun x y -> max x y) 1
+    let t2 = multiplicationDownWithPredicate x (fun x -> true)
+    let method3 = nod t1 t2
+    printfn "Result3: %d" method3
 
     0
