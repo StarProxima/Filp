@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "u29iCH9rQkNagsB0ujF9oeu6WbzN7n0JEFCLaAlUCaEjWq3aRupkHTC1O+e0Z1mjtnxVS9p2O6WLDUqliHKf+g==",
+  "success": true,
+  "projectFilePath": "C:\\GitHub\\Filp\\LR6\\LR6_20 - 1.57\\LR6_20 - 1.57.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\maksp\\.nuget\\packages\\fsharp.core\\6.0.1\\fsharp.core.6.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
