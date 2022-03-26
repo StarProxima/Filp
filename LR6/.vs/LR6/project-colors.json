@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "5c38b437-3793-4e69-884f-befb377c4411": {
+      "ProjectGuid": "5c38b437-3793-4e69-884f-befb377c4411",
+      "DisplayName": "LR6",
+      "ColorIndex": 0
+    },
+    "d89c5bf7-49ec-4225-94b6-86df3395244c": {
+      "ProjectGuid": "d89c5bf7-49ec-4225-94b6-86df3395244c",
+      "DisplayName": "LR6_11",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}
