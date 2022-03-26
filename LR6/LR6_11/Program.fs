@@ -31,7 +31,7 @@ let proc3 list func =
 let main argv =
     printfn "Number of items and list:"
     let list = readList (Console.ReadLine() |> Convert.ToInt32)
-    let newList = proc3 list (fun x y z -> x + y + z)
+    let new_list = proc3 list (fun x y z -> x + y + z)
     printfn "Result:"
-    printList newList
+    printList new_list
     0
