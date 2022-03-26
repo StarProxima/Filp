@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "e4jUJyQUE8CGcEXdLADh003hSy26Ja8bQbg/CNWUtjIGVwkrBes7VDO16L7wcD2Wl2BJTddBS5rzZe7H4oZOmQ==",
+  "dgSpecHash": "eF9nVdGcYaQlHPpZ5dFvc5wYMhpYn1hAqlVFUWPfmnMWhp7acq6Z08jWk3v1aXFQNFt8AUq1SKsQBFN25tYCnA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\maksp\\source\\repos\\LR6\\LR6_11\\LR6_11.fsproj",
+  "projectFilePath": "C:\\GitHub\\Filp\\LR6\\LR6_11\\LR6_11.fsproj",
   "expectedPackageFiles": [
     "C:\\Users\\maksp\\.nuget\\packages\\fsharp.core\\6.0.1\\fsharp.core.6.0.1.nupkg.sha512"
   ],
