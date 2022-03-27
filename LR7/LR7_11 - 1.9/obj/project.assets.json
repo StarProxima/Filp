@@ -118,11 +118,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\maksp\\source\\repos\\LR7\\LR7_11 - 1.9\\LR7_11 - 1.9.fsproj",
+      "projectUniqueName": "C:\\GitHub\\Filp\\LR7\\LR7_11 - 1.9\\LR7_11 - 1.9.fsproj",
       "projectName": "LR7_11 - 1.9",
-      "projectPath": "C:\\Users\\maksp\\source\\repos\\LR7\\LR7_11 - 1.9\\LR7_11 - 1.9.fsproj",
+      "projectPath": "C:\\GitHub\\Filp\\LR7\\LR7_11 - 1.9\\LR7_11 - 1.9.fsproj",
       "packagesPath": "C:\\Users\\maksp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\maksp\\source\\repos\\LR7\\LR7_11 - 1.9\\obj\\",
+      "outputPath": "C:\\GitHub\\Filp\\LR7\\LR7_11 - 1.9\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\maksp\\AppData\\Roaming\\NuGet\\NuGet.Config",
