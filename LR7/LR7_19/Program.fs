@@ -10,6 +10,14 @@ let task8 (str:string) =
     let splited = str.Split " "
     Array.fold (fun acc x -> if (String.length x) % 2 = 0 then acc+1 else acc) 0 splited
 
+let task16 strArray =
+    let cmprColots = function 
+        | "White" -> 0
+        | "Blue" -> 1
+        | "Red" -> 2
+    Array.sortBy cmprColots strArray
+
+let createStrArray n =
     let rec createStrArrayInternal tn strArray =
         if(tn >= n) then strArray
         else
@@ -28,6 +36,6 @@ let main argv =
     printfn "Result: "
     printfn "%A" (task3 str)
     printfn "%A" (task8 str)
-    
-    
+    printfn "Count and StringArray: "
+    printf "Result: %A" (task16 (createStrArray (Console.ReadLine() |> Convert.ToInt32)))
     0
