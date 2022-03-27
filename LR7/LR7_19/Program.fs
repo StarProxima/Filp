@@ -32,7 +32,7 @@ let createStrArray n =
 let main argv =
     printfn "String: "
 
-    let str =Console.ReadLine()
+    let str = Console.ReadLine()
     printfn "Result: "
     printfn "%A" (task3 str)
     printfn "%A" (task8 str)
