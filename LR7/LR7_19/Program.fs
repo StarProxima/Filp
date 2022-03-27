@@ -30,12 +30,18 @@ let createStrArray n =
          
 [<EntryPoint>]
 let main argv =
-    printfn "String: "
+    printfn "Number of task: 1, 2 or 3: "
+    let number = Console.ReadLine() |> Convert.ToInt32
 
-    let str = Console.ReadLine()
-    printfn "Result: "
-    printfn "%A" (task3 str)
-    printfn "%A" (task8 str)
-    printfn "Count and StringArray: "
-    printf "Result: %A" (task16 (createStrArray (Console.ReadLine() |> Convert.ToInt32)))
+    match number with
+    | 1 ->
+        printfn "String: "
+        printfn "Result: %A" (task3 (Console.ReadLine()))
+    | 2 -> 
+        printfn "String: "
+        printfn "Result: %A" (task8 (Console.ReadLine()))
+    | 3 ->
+        printfn "Count and StringArray: "
+        printf "Result: %A" (task16 (createStrArray (Console.ReadLine() |> Convert.ToInt32)))
+
     0

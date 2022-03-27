@@ -39,7 +39,7 @@ let proc list =
 let main argv =
     printfn "Number of items and list:"
     let list = readList (Console.ReadLine() |> Convert.ToInt32)
-    
+    List.un
     printfn "Result"
     writeList (proc list)
     0
