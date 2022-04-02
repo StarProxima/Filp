@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "eUSG3jDJll+0Z61NDQIkbhDc9aBSRpQZyN7AEKaRSNop946IaQdS0poRJQJA14NhZEqPhmukJWj5C1LrPNJFkQ==",
+  "dgSpecHash": "s8SxwcEKWYVBf+FGHZeQj0Q/uQQ5Sk5+a0QQu3EgZMoa6c62ErWg3Kbulno0SdSuRvTlQGW96JuqoiBf5yUHdQ==",
   "success": true,
-  "projectFilePath": "C:\\GitHub\\Filp\\LR7\\LR7_16 - 1.59\\LR7_16 - 1.59.fsproj",
+  "projectFilePath": "C:\\Users\\StarProxima\\Documents\\GitHub\\Filp\\LR7\\LR7_16 - 1.59\\LR7_16 - 1.59.fsproj",
   "expectedPackageFiles": [
-    "C:\\Users\\maksp\\.nuget\\packages\\fsharp.core\\6.0.1\\fsharp.core.6.0.1.nupkg.sha512"
+    "C:\\Users\\StarProxima\\.nuget\\packages\\fsharp.core\\6.0.1\\fsharp.core.6.0.1.nupkg.sha512"
   ],
   "logs": []
 }
