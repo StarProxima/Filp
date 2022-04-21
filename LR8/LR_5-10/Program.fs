@@ -1,4 +1,5 @@
 ﻿open System
+open System.Text.RegularExpressions
 
 type DriversLicense(
     firstName: string,
@@ -34,6 +35,32 @@ type DriversLicense(
     override this.GetHashCode() =
         HashCode.Combine(series, number)
 
+    // Кидает ошибку если строка не уд. регулярке
+let assertRegex str regex =
+    let reg = Regex(regex)
+    if not (reg.IsMatch str) then
+        invalidArg str $"Некорректная строка"
+
+// Ввод поля в соотв. с регуляркой (пока не будет введено верно)
+let rec input fieldName regex =
+    printf $"{fieldName}: "
+    let str = Console.ReadLine()
+    try
+        assertRegex str regex
+        str
+    with
+    | e ->
+        printfn "Ошибка: %s" (e.Message)
+        input fieldName regex
+
+let inputDriversLicense() =
+    printfn "Водительские права - "
+    let firstname = input "Имя" "^[a-zA-Zа-яА-Я]+$"
+    let lastname = input "Фамилия" "^[a-zA-Zа-яА-Я]+$"
+    let series = input "Серия" "^\d{4}$" |> Int32.Parse
+    let number = input "Номер" "^\d{6}$" |> Int32.Parse
+    let expirationDate = input "Дата окончания срока действия" "^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$" |> DateTime.Parse
+    DriversLicense(firstname, lastname, series, number, expirationDate)
     
 
 
@@ -45,4 +72,5 @@ let main argv =
     let licence2 = DriversLicense("НеГиряндр", "НеДанилков", 1314, 678635, DateTime.Parse "16.04.2022")
     Console.WriteLine(licence1)
     Console.WriteLine(licence1 <> licence2)
+    let lic = inputDriversLicense()
     0
