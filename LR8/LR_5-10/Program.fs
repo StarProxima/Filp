@@ -138,8 +138,29 @@ let main argv =
     let licence1 = DriversLicense("Гиряндр", "Данилков", 1314, 678634, DateTime.Parse "16.04.2022")
     let licence2 = DriversLicense("НеГиряндр", "НеДанилков", 1314, 678635, DateTime.Parse "17.04.2022")
     Console.WriteLine(compare licence2 licence1)
-    Console.WriteLine(licence1 <> licence2)
-    let lic = inputDriversLicense()
+    //Console.WriteLine(licence1 <> licence2)
+    //let lic = inputDriversLicense()
+    let random = System.Random()
+    let licenceList = [for i in 1 .. 10000000 -> DriversLicense("Гиряндр", "Данилков", random.Next(1000,9999), random.Next(100000,999999), DateTime.Parse "29.04.2022")]
+    
+    
+
+    let Alist = ArrayDLCollection(licenceList)
+    let Llist = ListDLCollection(licenceList)
+    let Blist = BinListDLCollection(licenceList)
+    let Slist = SetDLCollection(licenceList)
+
+    let randElem = licenceList[random.Next(0,10000000)];
+   
+    Console.WriteLine("Array: {0}",  Alist.search(randElem))
+    Console.WriteLine("List:  {0}",  Llist.search(randElem))
+    Console.WriteLine("Bin:   {0}",  Blist.search(randElem))
+    Console.WriteLine("Set:   {0}",  Slist.search(randElem))
+
+    //Array: 00:00:00.1012605
+    //List:  00:00:00.1073397
+    //Bin:   00:00:00.2656096
+    //Set:   00:00:00.0004588
     
 
     0
