@@ -67,28 +67,29 @@ type DLCollection() =
 
 type ArrayDLCollection(list: DriversLicense list)=
     inherit DLCollection()
-    member this.Array = Array.ofList list
+    let mutable array = Array.ofList list
 
     
     override this.search(lic) = 
-        let l = Array.ofList list
+        //let l = Array.ofList list
         let watch = new Stopwatch()
         watch.Start()
-        if (Array.exists (fun x-> x.Equals lic) l) then watch.Elapsed else TimeSpan.MinValue
+        if (Array.exists (fun x-> x.Equals lic) array) then watch.Elapsed else TimeSpan.MinValue
 
 
 type ListDLCollection(list: DriversLicense list)=
     inherit DLCollection()
-    member this.List = list
+    let mutable lis = list
 
     //override this.search(lic) = 
     //    List.exists (fun x-> x.Equals(lic)) this.List
 
     override this.search(lic) = 
-        let l = list
+        //let l = list
         let watch = new Stopwatch()
         watch.Start()
-        if (List.exists (fun x-> x.Equals lic) l) then watch.Elapsed else TimeSpan.MinValue
+        if (List.exists (fun x-> x.Equals lic) lis) then watch.Elapsed else TimeSpan.MinValue
+
 
 type BinListDLCollection(list: DriversLicense list)=
     inherit DLCollection()
@@ -106,7 +107,7 @@ type BinListDLCollection(list: DriversLicense list)=
             | 1->binSearch list.[middleIndx + 1..] license  
     
 
-    member this.List = List.sortBy (fun (x:DriversLicense) -> (x.series, x.number)) list 
+    let mutable bin = List.sortBy (fun (x:DriversLicense) -> (x.series, x.number)) list 
 
    
     //override this.search(lic) =
@@ -114,22 +115,22 @@ type BinListDLCollection(list: DriversLicense list)=
     //    binSearch this.List lic
 
     override this.search(lic) = 
-        let l = List.sortBy (fun (x:DriversLicense) -> (x.series, x.number)) list 
+        //let l = List.sortBy (fun (x:DriversLicense) -> (x.series, x.number)) list 
         let watch = new Stopwatch()
         watch.Start()
-        if (binSearch l lic) then watch.Elapsed else TimeSpan.MinValue
+        if (binSearch bin lic) then watch.Elapsed else TimeSpan.MinValue
 
 type SetDLCollection(list: DriversLicense list)=
     inherit DLCollection()
-    member this.Set = Set.ofList list
+    let mutable set = Set.ofList list
 
     //override this.search(set) = 
     //    Set.contains set this.Set
     override this.search(lic) = 
-           let l = Set.ofList list
+           //let l = Set.ofList list
            let watch = new Stopwatch()
            watch.Start()
-           if (Set.contains lic l) then watch.Elapsed else TimeSpan.MinValue
+           if (Set.contains lic set) then watch.Elapsed else TimeSpan.MinValue
 
 
 
@@ -157,10 +158,10 @@ let main argv =
     Console.WriteLine("Bin:   {0}",  Blist.search(randElem))
     Console.WriteLine("Set:   {0}",  Slist.search(randElem))
 
-    //Array: 00:00:00.1012605
-    //List:  00:00:00.1073397
-    //Bin:   00:00:00.2656096
-    //Set:   00:00:00.0004588
+    //Array: 00:00:00.0667475
+    //List:  00:00:00.0694487
+    //Bin:   00:00:00.3574403
+    //Set:   00:00:00.0004140
     
 
     0
