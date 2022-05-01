@@ -3,7 +3,7 @@ open System.Windows.Controls
 open System.Windows.Markup
 open System
 
-let getWindow() =
+let getWindow =
     let xaml = "
         <Window
         	xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'
@@ -36,5 +36,5 @@ let getWindow() =
 [<EntryPoint>]
 [<STAThread>] 
 let main argv =
-    (new Application()).Run (getWindow()) |> ignore
+    (new Application()).Run (getWindow) |> ignore
     0
