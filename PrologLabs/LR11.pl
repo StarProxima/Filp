@@ -63,3 +63,12 @@ grand_dats(X):-grand_da(Y,X),write(Y),nl,fail.
 
 % 14
 grand_ma_and_da(X,Y) :- woman(Y),woman(X),(grand_da(X,Y);grand_da(Y,X)).
+
+% 15
+min_digit_up(X,C) :- X < 10, C is X.
+min_digit_up(X,Y) :- 
+    D is X div 10,
+    min_digit_up(D,C),
+    M is X mod 10,
+    Y is min(M,C).
+
