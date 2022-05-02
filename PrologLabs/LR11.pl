@@ -81,3 +81,12 @@ min_digit_down(X,Y,Digit) :-
     NewDigit is min(Digit,M),
     D is X div 10,
     min_digit_down(D,Y,NewDigit).
+
+% 17
+mult_digits5(X,C) :- 
+    X < 10,
+    (0 is X mod 5, C is 1; C is X).
+mult_digits5(X,Y) :-
+    V is X div 10,
+    N is X mod 10,
+    (0 is N mod 5, mult_digits5(V,Y);(mult_digits5(V,C), Y is N * C)).
