@@ -60,3 +60,6 @@ wife(X) :- wife(Y,X), print(Y).
 % 13 
 grand_da(X,Y):-woman(X),parent(Y,Z),parent(Z,X).
 grand_dats(X):-grand_da(Y,X),write(Y),nl,fail.
+
+% 14
+grand_ma_and_da(X,Y) :- woman(Y),woman(X),(grand_da(X,Y);grand_da(Y,X)).
