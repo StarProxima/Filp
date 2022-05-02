@@ -20,7 +20,7 @@ max_prime_divider_down(X,Y) :- max_prime_divider_down(X,Y,X).
 % Или вместо этого просто Y is max(C, NewDel)
 max(Y, C, NewDel) :- NewDel > C, Y is NewDel,!.
 max(Y, C, NewDel) :- NewDel < C, Y is C,!.
-max(Y, C, NewDel) :- Y is C.
+max(Y, C, _) :- Y is C.
 
 max_prime_divider_up(_,Y,Del) :- Del < 2, Y is 1.
 max_prime_divider_up(X,Y,Del) :-
