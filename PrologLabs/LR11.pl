@@ -83,10 +83,22 @@ min_digit_down(X,Y,Digit) :-
     min_digit_down(D,Y,NewDigit).
 
 % 17
-mult_digits5(X,C) :- 
+mult_digits5_up(X,C) :- 
     X < 10,
     (0 is X mod 5, C is 1; C is X).
-mult_digits5(X,Y) :-
-    V is X div 10,
-    N is X mod 10,
-    (0 is N mod 5, mult_digits5(V,Y);(mult_digits5(V,C), Y is N * C)).
+mult_digits5_up(X,Y) :-
+    M is X mod 10,
+    D is X div 10,
+    (0 is M mod 5, mult_digits5_up(D,Y);(mult_digits5_up(D,C), Y is M * C)).
+
+% 18
+mult_digits5_down(X,Y) :- mult_digits5_down(X,Y,1).
+
+mult_digits5_down(X,Y,Mult) :- 
+    X < 10,
+    (0 is X mod 5, Y is Mult; Y is Mult * X).
+mult_digits5_down(X,Y,Mult) :-
+    M is X mod 10,
+    D is X div 10,
+    (0 is M mod 5, NewMult is Mult; NewMult is M * Mult),
+    mult_digits5_down(D,Y,NewMult).
