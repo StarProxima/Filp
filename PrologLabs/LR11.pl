@@ -72,3 +72,12 @@ min_digit_up(X,Y) :-
     M is X mod 10,
     Y is min(M,C).
 
+% 16
+min_digit_down(X,Y) :- min_digit_down(X,Y,10).
+
+min_digit_down(X,Y,Digit) :- X < 10, Y is min(X,Digit).
+min_digit_down(X,Y,Digit) :- 
+    M is X mod 10,
+    NewDigit is min(Digit,M),
+    D is X div 10,
+    min_digit_down(D,Y,NewDigit).
