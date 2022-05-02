@@ -107,3 +107,7 @@ mult_digits5_down(X,Y,Mult) :-
 fib_up(N,X) :- N < 3, X is 1.
 fib_up(N,X) :- fib_up(N - 2,X2), fib_up(N - 1,X1), X is X2 + X1.
 
+% 20
+fib_down(N,X):-fib_down(N,X,1,1,2).
+fib_down(N,X,_,X,N):-!.
+fib_down(N,X,Fib1,Fib2,K) :- NewFib1 is Fib2, NewFib2 is Fib2+Fib1, NewK is K+1, fib_down(N,X,NewFib1,NewFib2,NewK).
