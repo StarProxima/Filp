@@ -102,3 +102,8 @@ mult_digits5_down(X,Y,Mult) :-
     D is X div 10,
     (0 is M mod 5, NewMult is Mult; NewMult is M * Mult),
     mult_digits5_down(D,Y,NewMult).
+
+% 19
+fib_up(N,X) :- N < 3, X is 1.
+fib_up(N,X) :- fib_up(N - 2,X2), fib_up(N - 1,X1), X is X2 + X1.
+
