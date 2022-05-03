@@ -25,3 +25,17 @@ sum_interval([Elem|Tail], A, B, Ans) :-
     inInteval(Elem, A, B, Inc),
     sum_interval(Tail, A, B, Ans1),
     Ans is Ans1 + Inc,!.
+
+% 13 - 57
+
+count_elem([Elem|Tail], Ans) :- count_elem([Elem|Tail], 0, Ans),!.
+
+moreSum(Elem, Sum, Inc) :- Elem > Sum, Inc is 1.
+moreSum(_, _, Inc) :-  Inc is 0.
+
+count_elem([], _, 0).
+count_elem([Elem|Tail], Sum, Ans):-
+    moreSum(Elem, Sum, Inc),
+    NewSum is Sum+Elem,
+    count_elem(Tail, NewSum, Ans1),
+    Ans is Ans1 + Inc.
