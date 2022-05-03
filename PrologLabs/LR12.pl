@@ -83,3 +83,12 @@ b(P, A, Value, Ans) :-
 % 14
 list_length([],0).
 list_length([_|Tail],Ans) :- list_length(Tail,Count), Ans is Count + 1.
+
+% 15 - 11
+different_elem([Elem1|[Elem2|[Elem3|Tail]]], Ans) :- 
+    (Elem1 is Elem2, Elem2 is Elem3, different_elem([Elem2,Elem3|Tail], Ans); 
+    get_different(Elem1,Elem2,Elem3,Ans)),!.
+get_different(X,X,Y,Y).
+get_different(X,Y,X,Y).
+get_different(Y,X,X,Y).
+
