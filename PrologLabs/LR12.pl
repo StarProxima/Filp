@@ -127,3 +127,16 @@ trim_max_elem([Elem|Tail], Max, Ans) :-
     make_list(Tail,Ans); 
     trim_max_elem(Tail, Max, Ans).
 
+% 18 - 23
+
+isMins(Elem, Min1, _, X, Y) :- Elem < Min1, X is Elem, Y is Min1.
+isMins(Elem, Min1, Min2, X, Y) :- Elem < Min2, X is Min1, Y is Elem.
+% isMins(Elem, Min1, _, X, Y) :- Elem is Min1, X is Elem, Y is Min1.
+isMins(_, Min1, Min2, X, Y) :- X is Min1, Y is Min2.
+
+find_two_min([Elem1, Elem2], Min1, Min2) :- Elem2 < Elem1, Min1 is Elem2, Min2 is Elem1,!.
+find_two_min([Elem1, Elem2], Elem1, Elem2) :- !.
+find_two_min([Elem|Tail], Min1, Min2) :- 
+    find_two_min(Tail, M1, M2),
+    isMins(Elem, M1, M2, Min1, Min2),!.
+    
