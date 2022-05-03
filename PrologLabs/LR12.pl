@@ -146,3 +146,15 @@ alternating_elem([_]) :- !.
 alternating_elem([Elem1|[Elem2|Tail]]) :-
     (Elem1 < 0, Elem2 > 0; Elem1 > 0, Elem2 < 0),
     alternating_elem([Elem2|Tail]),!.
+
+% 20 - 36
+
+isUnevenMax(Elem, Max, X) :- 1 is Elem mod 2, Elem > Max, X is Elem.
+isUnevenMax(_, Max, X) :- X is Max.
+
+max_uneven_elem([Elem], X) :- 1 is Elem mod 2, X is Elem,!.
+max_uneven_elem([_], X) :- X is -1,!.
+
+max_uneven_elem([Elem|Tail], X) :- 
+    max_uneven_elem(Tail, X2),
+    isUnevenMax(Elem, X2, X),!.
