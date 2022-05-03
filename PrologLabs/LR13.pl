@@ -47,14 +47,43 @@ add_find_list([_|Tail], Elem) :- add_find_list(Tail, Elem).
 
 get_answer14:- get_answer14([_,_,_]).
 get_answer14(List) :- 
+
     add_find_list(List,[belocurov,_]),
     add_find_list(List,[rizov,_]),
     add_find_list(List,[chernov,_]),
+
     add_find_list(List,[_,blondin]),
     add_find_list(List,[_,riziy]),
-    add_find_list(List,[_,brunet]), write(0),
-    not(add_find_list(List,[belocurov,brunet])), write(1),
-    not(add_find_list(List,[belocurov,blondin])), write(2),
-    not(add_find_list(List,[rizov,riziy])), write(3), 
-    not(add_find_list(List,[chernov,brunet])), nl,
-    write(List).
+    add_find_list(List,[_,brunet]),
+
+    not(add_find_list(List,[belocurov,brunet])),
+    not(add_find_list(List,[belocurov,blondin])),
+    not(add_find_list(List,[rizov,riziy])),
+    not(add_find_list(List,[chernov,brunet])),
+
+    write(List),!.
+
+
+% 15
+get_answer15:- get_answer15([_,_,_]).
+get_answer15(List) :-
+
+    add_find_list(List,[anya,X,X]),
+    add_find_list(List,[valya,_,_]),
+    add_find_list(List,[natasha,_,green]),
+
+    add_find_list(List,[_,white,_]),
+    add_find_list(List,[_,green,_]),
+    add_find_list(List,[_,blue,_]),
+
+    add_find_list(List,[_,_,white]),
+    add_find_list(List,[_,_,green]),
+    add_find_list(List,[_,_,blue]),
+    
+    not(add_find_list(List,[valya,Y,Y])),
+    not(add_find_list(List,[natasha,Z,Z])),
+    
+    not(add_find_list(List,[valya,_,white])),
+    not(add_find_list(List,[valya,white,_])),
+    
+    write(List),!.
