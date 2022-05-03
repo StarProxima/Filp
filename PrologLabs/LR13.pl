@@ -87,3 +87,24 @@ get_answer15(List) :-
     not(add_find_list(List,[valya,white,_])),
     
     write(List),!.
+
+% 16
+get_answer16:- get_answer16([_,_,_]).
+get_answer16(List) :-
+
+    add_find_list(List,[_,_,1]),
+    add_find_list(List,[_,_,2]),
+    
+    add_find_list(List,[_,slesar,0]),
+    add_find_list(List,[_,tokar,X]),
+    add_find_list(List,[_,svarshik,_]),
+    
+
+    add_find_list(List,[borisov,_,_]),
+    add_find_list(List,[ivanov,_,_]),
+    add_find_list(List,[semenov,_,Y]),
+
+    Y > X,
+    not(add_find_list(List,[borisov,slesar,_])),
+
+    write(List),!.
