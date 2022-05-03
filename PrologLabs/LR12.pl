@@ -80,4 +80,6 @@ b(P, A, Value, Ans) :-
     b(P, A, NewValue, Ans1),
     Ans is Ans1 + Inc.
     
-    
+% 14
+list_length([],0).
+list_length([_|Tail],Ans) :- list_length(Tail,Count), Ans is Count + 1.
