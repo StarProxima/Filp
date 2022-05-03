@@ -59,3 +59,25 @@ nod(X,0,X) :- !.
 nod(_,1,1) :- !.
 nod(X,Y,C) :- ModXY is X mod Y, nod(Y, ModXY, C).
 
+% 13 
+number_right_triangles(P, Ans):- a(P, 1, Ans).
+
+isRight(A,B,C, Inc) :- A2 is A*A, B2 is B*B, C2 is C*C, AB is A2 + B2, AB is C2, Inc is 1.
+isRight(_,_,_, Inc) :- Inc is 0.
+
+a(P, Value, Ans) :- Value > P/3, Ans is 0, !.
+a(P, Value, Ans) :- 
+    NewValue is Value+1,
+    b(P, Value, NewValue, Ans1),
+    a(P, NewValue, Ans2), 
+    Ans is Ans1 + Ans2,!.
+
+b(P, _, Value, Ans) :- Value > P/2, Ans is 0, !. 
+b(P, A, Value, Ans) :-
+    C is P-A-Value,
+    isRight(A,Value,C, Inc),
+    NewValue is Value+1,
+    b(P, A, NewValue, Ans1),
+    Ans is Ans1 + Inc.
+    
+    
