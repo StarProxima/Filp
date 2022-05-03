@@ -100,5 +100,30 @@ isEquel(_,_, Inc) :- Inc is 0.
 number_matching_elem([],[], 0).
 number_matching_elem([],[_|_], 0).
 number_matching_elem([_|_],[], 0).
-number_matching_elem([Elem1|Tail1], [Elem2|Tail2], Ans) :- number_matching_elem(Tail1, Tail2, Count), isEquel(Elem1, Elem2, Inc), Ans is Count + Inc,!.
+number_matching_elem([Elem1|Tail1], [Elem2|Tail2], Ans) :-
+    number_matching_elem(Tail1, Tail2, Count),
+    isEquel(Elem1, Elem2, Inc),
+    Ans is Count + Inc,!.
+
+
+% 17 - 21
+trim_max_elem([Elem|Tail], Ans):- 
+    max_elem([Elem|Tail], X), 
+    trim_max_elem([Elem|Tail], X, Ans),!.
+
+isMax(Elem, Max, X) :- Elem > Max, X is Elem.
+isMax(_, Max, X) :- X is Max.
+
+max_elem([Elem], Elem) :- !.
+max_elem([Elem|Tail], X) :- 
+    max_elem(Tail, X2),
+    isMax(Elem, X2, X),!.
+
+make_list([Elem|Tail], [Elem|Tail]). 
+
+trim_max_elem([], _, _).
+trim_max_elem([Elem|Tail], Max, Ans) :-
+    Elem is Max, 
+    make_list(Tail,Ans); 
+    trim_max_elem(Tail, Max, Ans).
 
