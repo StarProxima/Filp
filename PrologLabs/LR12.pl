@@ -82,7 +82,7 @@ b(P, A, Value, Ans) :-
     
 % 14
 list_length([],0).
-list_length([_|Tail],Ans) :- list_length(Tail,Count), Ans is Count + 1.
+list_length([_|Tail],Ans) :- list_length(Tail,Count), Ans is Count + 1,!.
 
 % 15 - 11
 different_elem([Elem1|[Elem2|[Elem3|Tail]]], Ans) :- 
@@ -91,4 +91,14 @@ different_elem([Elem1|[Elem2|[Elem3|Tail]]], Ans) :-
 get_different(X,X,Y,Y).
 get_different(X,Y,X,Y).
 get_different(Y,X,X,Y).
+
+    
+% 16 - 10
+isEquel(X,Y, Inc) :- X is Y, Inc is 1.
+isEquel(_,_, Inc) :- Inc is 0.
+
+number_matching_elem([],[], 0).
+number_matching_elem([],[_|_], 0).
+number_matching_elem([_|_],[], 0).
+number_matching_elem([Elem1|Tail1], [Elem2|Tail2], Ans) :- number_matching_elem(Tail1, Tail2, Count), isEquel(Elem1, Elem2, Inc), Ans is Count + Inc,!.
 
