@@ -136,7 +136,13 @@ isMins(_, Min1, Min2, X, Y) :- X is Min1, Y is Min2.
 
 find_two_min([Elem1, Elem2], Min1, Min2) :- Elem2 < Elem1, Min1 is Elem2, Min2 is Elem1,!.
 find_two_min([Elem1, Elem2], Elem1, Elem2) :- !.
+
 find_two_min([Elem|Tail], Min1, Min2) :- 
     find_two_min(Tail, M1, M2),
     isMins(Elem, M1, M2, Min1, Min2),!.
-    
+
+% 19 - 33
+alternating_elem([_]) :- !.
+alternating_elem([Elem1|[Elem2|Tail]]) :-
+    (Elem1 < 0, Elem2 > 0; Elem1 > 0, Elem2 < 0),
+    alternating_elem([Elem2|Tail]),!.
