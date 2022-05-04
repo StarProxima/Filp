@@ -173,3 +173,27 @@ get_answer18(List) :-
     add_find_list(List,[levitsky,pisatel]), not(add_find_list(List,[voronov,r34artist]))),
     
     write(List).
+
+% 19
+get_answer19 :- get_answer19([_,_,_]).
+get_answer19(List) :-
+    
+    add_find_list(List,[maykl,basketball,_,A]),
+    add_find_list(List,[saimon,_,israeli,C]),
+    add_find_list(List,[richard,_,_,_]),
+
+    add_find_list(List,[_,basketball,_,_]),
+    add_find_list(List,[_,tennis,_,D]),
+    add_find_list(List,[_,cricket,_,1]),
+
+    add_find_list(List,[_,_,american,B]),
+    add_find_list(List,[_,_,israeli,_]),
+    add_find_list(List,[_,_,australian,_]),
+
+    add_find_list(List, [_,_,_,2]),
+    add_find_list(List, [_,_,_,3]),
+    
+    A < B,
+    C < D,
+
+    write(List).
