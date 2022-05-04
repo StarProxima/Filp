@@ -197,3 +197,29 @@ get_answer19(List) :-
     C < D,
 
     write(List).
+
+% 20
+get_answer20 :- get_answer20([_,_,_]).
+get_answer20(List) :-
+    
+    add_find_list(List,[aladar,_,_]),
+    add_find_list(List,[bela,_,_]),
+    add_find_list(List,[balash,_,_]),
+
+    add_find_list(List,[_,budapest,_]),
+    add_find_list(List,[_,bekeschaba,_]),
+    add_find_list(List,[_,asoda,_]),
+
+    add_find_list(List,[_,budapest,aptekar]),
+    add_find_list(List,[_,_,buhalter]),
+    add_find_list(List,[_,_,agronom]),
+
+    not(add_find_list(List,[balash,budapest,_])),
+
+    (add_find_list(List,[aladar,asoda,agronom]),
+    add_find_list(List,[bela,bekeschaba,buhalter]);
+
+    add_find_list(List,[aladar,asoda,agronom]),
+    add_find_list(List,[balash,bekeschaba,buhalter])),
+
+    write(List).
