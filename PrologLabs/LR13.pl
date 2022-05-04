@@ -145,3 +145,31 @@ get_answer17(List) :-
     near(List, [stakan,_],[banka,_]),
     near(List, [stakan,_],[_,moloko]),
     write(List).
+
+% 18
+get_answer18 :- get_answer18([_,_,_,_]).
+get_answer18(List) :-
+
+    add_find_list(List,[voronov,_]),
+    add_find_list(List,[pavlov,_]),
+    add_find_list(List,[levitsky,_]),
+    add_find_list(List,[sakharov,_]),
+
+    add_find_list(List,[_,tantsor]),
+    add_find_list(List,[_,r34artist]),
+    add_find_list(List,[_,pevets]),
+    add_find_list(List,[_,pisatel]),
+
+    not(add_find_list(List,[voronov,pevets])),
+    not(add_find_list(List,[levitsky,pevets])),
+
+    not(add_find_list(List,[pavlov,pisatel])),
+    not(add_find_list(List,[pavlov,r34artist])),
+
+    not(add_find_list(List,[sakharov,pisatel])),
+    not(add_find_list(List,[voronov,pisatel])),
+
+    (add_find_list(List,[voronov,r34artist]), not(add_find_list(List,[levitsky,pisatel]));
+    add_find_list(List,[levitsky,pisatel]), not(add_find_list(List,[voronov,r34artist]))),
+    
+    write(List).
