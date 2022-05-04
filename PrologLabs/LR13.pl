@@ -45,7 +45,7 @@ count_elem([Elem|Tail], Sum, Ans):-
 add_find_list([Elem|_], Elem).
 add_find_list([_|Tail], Elem) :- add_find_list(Tail, Elem).
 
-get_answer14:- get_answer14([_,_,_]).
+get_answer14 :- get_answer14([_,_,_]).
 get_answer14(List) :- 
 
     add_find_list(List,[belocurov,_]),
@@ -65,7 +65,7 @@ get_answer14(List) :-
 
 
 % 15
-get_answer15:- get_answer15([_,_,_]).
+get_answer15 :- get_answer15([_,_,_]).
 get_answer15(List) :-
 
     add_find_list(List,[anya,X,X]),
@@ -89,7 +89,7 @@ get_answer15(List) :-
     write(List),!.
 
 % 16
-get_answer16:- get_answer16([_,_,_]).
+get_answer16 :- get_answer16([_,_,_]).
 get_answer16(List) :-
 
     add_find_list(List,[_,_,1]),
@@ -108,3 +108,40 @@ get_answer16(List) :-
     not(add_find_list(List,[borisov,slesar,_])),
 
     write(List),!.
+
+% 17
+
+near([Elem1,Elem2|_], Elem1,Elem2).
+near([Elem2,Elem1|_], Elem1,Elem2).
+near([_,Elem|Tail], Elem1,Elem2) :- 
+    near([Elem|Tail], Elem1,Elem2).
+
+between(Center,Elem1,Elem2, [Elem1,Center,Elem2|_]).
+between(Center,Elem1,Elem2, [Elem2,Center,Elem1|_]).
+between(Center,Elem1,Elem2, [_,El1,El2|Tail]) :-
+    between(Center, Elem1, Elem2, [El1,El2|Tail]).
+
+get_answer17 :- get_answer17([_,_,_,_]).
+get_answer17(List) :-
+
+    add_find_list(List,[butilka,_]),
+    add_find_list(List,[stakan,_]),
+    add_find_list(List,[kuvshin,_]),
+    add_find_list(List,[banka,_]),
+    add_find_list(List,[_,moloko]),
+    add_find_list(List,[_,limonad]),
+    add_find_list(List,[_,kvas]),
+    add_find_list(List,[_,voda]),
+
+    not(add_find_list(List,[butilka,voda])),
+    not(add_find_list(List,[butilka,moloko])),
+    not(add_find_list(List,[banka,limonad])),
+    not(add_find_list(List,[banka,voda])),
+
+    % not(add_find_list(List,[kuvshin,kvas])),
+    % not(add_find_list(List,[banka,moloko])),
+
+    between([_,limonad],[_,kvas],[kuvshin,_],List),
+    near(List, [stakan,_],[banka,_]),
+    near(List, [stakan,_],[_,moloko]),
+    write(List).
