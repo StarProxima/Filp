@@ -132,3 +132,30 @@ task1_4(Str, N) :-
     writeString(Last3),!.
 
 task1_4([H|_], N) :- writeStringNTimes([H], N).
+
+% 1.5
+
+task1_5 :- 
+    readString(Str, N), 
+    NewN is N - 1, 
+    subString(Str, NewN, N, [Char|_]), 
+    indexesCharacter(Str, Char, Ans), 
+    write(Ans).
+
+indexesCharacter(List, X, Ans) :- 
+    indexesCharacter(List, X, 0, [], Ans).
+
+indexesCharacter([X|T], X, I, List, Ans) :- 
+    appendString(List, [I], NewList), 
+    NewI is I + 1, 
+    indexesCharacter(T, X, NewI, NewList, Ans),!.
+
+indexesCharacter([_|T], X, I, List, Ans) :- 
+    NewI is I + 1, 
+    indexesCharacter(T, X, NewI, List, Ans),!.
+
+indexesCharacter([], _, _, Ans, Ans) :- !.
+
+
+
+
