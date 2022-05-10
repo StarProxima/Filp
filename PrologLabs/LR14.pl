@@ -1,5 +1,15 @@
 
 
+
+% 1.1
+
+task1_1:- 
+    readString(Str,N), 
+    writeString(Str), write(", "), 
+    writeString(Str), write(", "), 
+    writeString(Str), write(", "), 
+    write(N).
+
 readString(Str,N):- 
     get0(Char), 
     readString(Char, [], 0, Str, N).
@@ -18,10 +28,19 @@ appendString([X|T],Y,[X|T1]) :- appendString(T,Y,T1).
 writeString([]):-!.
 writeString([H|T]):-put(H),writeString(T).
 
-% 1.1
-task1_1:- 
-    readString(Str,N), 
-    writeString(Str), write(", "), 
-    writeString(Str), write(", "), 
-    writeString(Str), write(", "), 
-    write(N).
+
+
+% 1.2
+
+task1_2:- 
+    readString(Str,_), 
+    wordsCount(Str,Count),
+    write(Count).
+
+wordsCount([],Count):-Count is 1,!.
+wordsCount([H|T], Count):-
+	    H is 32,
+		wordsCount(T,N),
+		Count is N+1;
+		wordsCount(T,Count).
+
