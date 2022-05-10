@@ -12,15 +12,20 @@ task1_1:-
 
 readString(Str,N):- 
     get0(Char), 
-    readString(Char, [], 0, Str, N).
+    readString(Char, [], 0, Str, N, _).
 
-readString(10,Str,N,Str,N):-!.
+readString(Str,N, Flag):- 
+    get0(Char), 
+    readString(Char, [], 0, Str, N, Flag).
 
-readString(Char,NowStr,Count,Str,N):-
+readString(-1,Str,N,Str,N,1):-!.
+readString(10,Str,N,Str,N,0):-!.
+
+readString(Char,NowStr,Count,Str,N, Flag):-
     NewCount is Count+1, 
     appendString(NowStr,[Char],NewNowStr), 
     get0(NewChar), 
-    readString(NewChar,NewNowStr,NewCount,Str,N).
+    readString(NewChar,NewNowStr,NewCount,Str,N, Flag).
 
 appendString([],X,X).
 appendString([X|T],Y,[X|T1]) :- appendString(T,Y,T1).
@@ -50,16 +55,14 @@ task1_3 :- readString(Str, _), mostCommonWord(Str, X), writeString(X).
 
 
 
-count(List, X, Ans) :- 
-    count(List, X, 0, Ans).
-count([], _, Ans, Ans) :- !.
-count([X|T], X, CurCnt, Ans) :- 
-    NewCnt is CurCnt + 1, 
-    count(T, X, NewCnt, Ans),!.
-count([_|T], X, CurCnt, Ans) :- 
-    count(T, X, CurCnt, Ans),!.
-
-
+countWordString(List, X, Ans) :- 
+    countWordString(List, X, 0, Ans).
+countWordString([], _, Ans, Ans) :- !.
+countWordString([X|T], X, Count, Ans) :- 
+    NewCount is Count + 1, 
+    countWordString(T, X, NewCount, Ans),!.
+countWordString([_|T], X, Count, Ans) :- 
+    countWordString(T, X, Count, Ans),!.
 
 splitString([], _, CurWord, CurWordList, Ans) :- 
     appendString(CurWordList, [CurWord], NewWL), 
@@ -84,7 +87,7 @@ mostCommonWord(Str, Ans) :-
     mostCommonWord(Words, Words, 0, [], Ans). 
 
 mostCommonWord(Words, [Word|T], CurMaxCnt, _, Ans) :- 
-    count(Words, Word, Cnt), 
+    countWordString(Words, Word, Cnt), 
     Cnt > CurMaxCnt, 
     NewMax is Cnt, 
     NewMaxWord = Word, 
@@ -155,6 +158,50 @@ indexesCharacter([_|T], X, I, List, Ans) :-
     indexesCharacter(T, X, NewI, List, Ans),!.
 
 indexesCharacter([], _, _, Ans, Ans) :- !.
+
+% 2.1
+
+task2_1 :- see('LR14_Files/file1.txt'), readStringList(StrList), seen, maxLengthList(StrList, MaxLen), write(MaxLen),!.
+
+count([X|T], Ans) :- 
+    count([X|T], 0, Ans).
+
+count([_|T], Count, Ans) :- 
+    NewCount is Count + 1, 
+    count(T, NewCount, Ans), !.
+
+count([], Ans, Ans) :- !.
+
+
+
+readStringList(List) :- 
+    readString(A,_,Flag), 
+    readStringList([A],List,Flag).
+
+readStringList(List,List,1) :- !.
+
+readStringList(Cur_list,List,0) :- 
+    readString(A,_,Flag), 
+    (not(A = []), append(Cur_list,[A],C_l),
+    readStringList(C_l,List,Flag); 
+    readStringList(Cur_list,List,Flag)),!.
+
+
+
+maxLengthList(List, Ans) :- 
+    maxLengthList(List, 0, Ans).
+
+maxLengthList([H|T], CurMax, Ans) :- 
+    count(H, NewMax), 
+    NewMax > CurMax, 
+    maxLengthList(T, NewMax, Ans), !.
+
+maxLengthList([_|T], CurMax, Ans) :- 
+    maxLengthList(T, CurMax, Ans), !.
+
+maxLengthList([], Ans, Ans) :- !.
+
+
 
 
 
