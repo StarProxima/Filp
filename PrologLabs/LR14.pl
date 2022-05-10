@@ -95,3 +95,40 @@ mostCommonWord(Words, [_|T], CurMaxCnt, CurMaxWord, Ans) :-
 
 mostCommonWord(_, [], _, Ans, Ans) :-!.
 
+
+
+% 1.4
+
+task1_4 :- readString(Str, N), task1_4(Str, N).
+
+subString([H|T], Start, End, Ans) :- 
+    subString([H|T], Start, End, 0, [], Ans).
+
+subString([H|T], Start, End, I, List, Ans) :- 
+    I >= Start, I < End, 
+    appendString(List, [H], NewList), 
+    NewI is I + 1, 
+    subString(T, Start, End, NewI, NewList, Ans),!.
+
+subString([_|T], Start, End, I, List, Ans) :- 
+    NewI is I + 1, 
+    subString(T, Start, End, NewI, List, Ans),!.
+
+subString([], _, _, _, Ans, Ans) :- !.
+
+writeStringNTimes(_, 0) :- !. 
+writeStringNTimes(Str, N) :- 
+    writeString(Str), 
+    NewN is N - 1,
+    writeStringNTimes(Str, NewN),!. 
+
+task1_4(Str, N) :- 
+    N > 5, 
+    subString(Str, 0, 3, First3), 
+    L3 is N - 3, 
+    subString(Str, L3, N, Last3), 
+    writeString(First3), 
+    write(" "), 
+    writeString(Last3),!.
+
+task1_4([H|_], N) :- writeStringNTimes([H], N).
