@@ -352,3 +352,81 @@ writeNoRepeatingWordsStrings([_|T], RepWords) :-
     writeNoRepeatingWordsStrings(T, RepWords), !.
 
 writeNoRepeatingWordsStrings([], _) :- !.
+
+% 3 - 3
+
+task3_3 :- 
+    readString(Str, _),
+    splitString(Str, " ", Words),
+    randomSortList(Words, NewWords),
+    wordsToString(NewWords, String),
+    writeString(String).
+
+
+
+wordsToString([H|T], Ans) :-
+    wordsToString([H|T], [], Ans),!.
+
+wordsToString([H|T],  List, Ans) :-
+    wordsToString2(H, List, NewList), 
+    appendString(NewList, [32], NewList2),
+    wordsToString(T, NewList2, Ans).
+
+wordsToString([], Ans, Ans).
+
+wordsToString2([H|T], List, Ans) :-
+    appendString(List, [H], NewList),
+    wordsToString2(T, NewList, Ans).
+
+wordsToString2([], Ans, Ans).
+
+
+
+valueByIndex([H|T], Index, Ans) :-
+    valueByIndex([H|T], 0, Index, Ans),!.
+    
+valueByIndex([Ans|_], Index, Index, Ans).
+
+valueByIndex([_|T], CurIndex, Index, Ans) :-
+    NewCurIndex is CurIndex + 1,
+    valueByIndex(T, NewCurIndex, Index, Ans).
+
+
+
+swapInList([H|T], Index1, Index2, Ans) :-
+    swapInList([H|T], [H|T], 0, Index1, Index2, [], Ans),!.
+
+swapInList(List, [H|T], CurIndex, Index1, Index2, SpawList, Ans) :-
+    NewCurIndex is CurIndex + 1,
+    (
+    CurIndex is Index1,
+    valueByIndex(List, Index2, Value),
+    appendString(SpawList, [Value], NewSpawList),
+    swapInList(List, T, NewCurIndex, Index1, Index2, NewSpawList, Ans)
+    ;
+    CurIndex is Index2,
+    valueByIndex(List, Index1, Value),
+    appendString(SpawList, [Value], NewSpawList),
+    swapInList(List, T, NewCurIndex, Index1, Index2, NewSpawList, Ans)
+    ;
+    appendString(SpawList, [H], NewSpawList),
+    swapInList(List, T, NewCurIndex, Index1, Index2, NewSpawList, Ans)
+    ).
+
+swapInList(_, [], _, _, _, Ans, Ans).
+
+
+
+randomSortList([H|T], Ans) :-
+    count([H|T], Length),
+    randomSortList([H|T], 0, 5, Length, Ans),!.
+
+randomSortList([H|T], CurIndex, MaxIndex, Length, Ans) :-
+    NewCurIndex is CurIndex + 1,
+    NewCurIndex < MaxIndex,
+    random(0, Length, RandIndex1),
+    random(0, Length, RandIndex2),
+    swapInList([H|T], RandIndex1, RandIndex2, NewList),
+    randomSortList(NewList, NewCurIndex, MaxIndex, Length, Ans).
+
+randomSortList(Ans, _, _, _, Ans).
