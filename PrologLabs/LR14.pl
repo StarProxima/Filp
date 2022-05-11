@@ -161,7 +161,7 @@ indexesCharacter([], _, _, Ans, Ans) :- !.
 
 % 2.1
 
-task2_1 :- see('LR14_Files/file1.txt'), readStringList(StrList), seen, maxLengthList(StrList, MaxLen), write(MaxLen),!.
+task2_1 :- see('LR14_Files/file1.txt'), readStringList(StringsList), seen, maxLengthList(StringsList, MaxLen), write(MaxLen),!.
 
 count([X|T], Ans) :- 
     count([X|T], 0, Ans).
@@ -203,7 +203,12 @@ maxLengthList([], Ans, Ans) :- !.
 
 % 2.2
 
-task2_2 :- see('LR14_Files/file1.txt'), readStringList(StrList), seen, countNoSpacesStrings(StrList, Cnt), write('Strings with no spaces: '), write(Cnt), nl.
+task2_2 :- 
+    see('LR14_Files/file1.txt'), 
+    readStringList(StringsList), 
+    seen, 
+    countNoSpacesStrings(StringsList, Count), 
+    write(Count),!.
 
 countCharacter(Str, Char, Ans) :- 
     char_code(Char, CharCode), 
@@ -221,8 +226,8 @@ countCharacter([], _, Ans, Ans) :- !.
 
 
 
-countNoSpacesStrings(Strings, Ans) :- 
-    countNoSpacesStrings(Strings, 0, Ans),!.
+countNoSpacesStrings(StringsList, Ans) :- 
+    countNoSpacesStrings(StringsList, 0, Ans),!.
 
 countNoSpacesStrings([H|T], Count, Ans) :- 
     countCharacter(H, " ", SpaceCount), 
@@ -235,7 +240,44 @@ countNoSpacesStrings([_|T], Count, Ans) :-
 
 countNoSpacesStrings([], Ans, Ans) :- !.
 
+% 2.3
 
+task2_3 :- 
+    see('LR14_Files/file2.txt'), 
+    readStringList(StringsList), 
+    seen, 
+    count(StringsList, Len), 
+    countCharacterList(StringsList, "a", Count1), 
+    countCharacterList(StringsList, "A", Count2), 
+    Count is Count1 + Count2, 
+    Avg is Count / Len, 
+    writeStringMoreA(StringsList, Avg).
+
+
+
+countCharacterList(List, Sym, Result) :- 
+    countCharacterList(List, Sym, 0, Result),!.
+
+countCharacterList([H|T], Sym, CurCnt, Result) :- 
+    countCharacter(H, Sym, Cnt), 
+    NewCnt is CurCnt + Cnt, 
+    countCharacterList(T, Sym, NewCnt, Result),!.
+
+countCharacterList([], _, Result, Result) :- !.
+
+
+
+writeStringMoreA([H|T], Avg) :- 
+    countCharacter(H, "a", Count1), 
+    countCharacter(H, "A", Count2), 
+    Count is Count1 + Count2, 
+    Count > Avg, 
+    writeString(H), nl,
+    writeStringMoreA(T, Avg),!.
+
+writeStringMoreA([_|T], Avg) :- writeStringMoreA(T, Avg), !.
+
+writeStringMoreA([], _) :- !.
 
 
 
