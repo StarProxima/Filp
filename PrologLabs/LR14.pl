@@ -449,3 +449,88 @@ countUnevenWords([_|T], Count, Ans) :-
     countUnevenWords(T, Count, Ans).
 
 countUnevenWords([], Ans, Ans).
+
+
+% 5 - 16
+
+task5 :- 
+    see('LR14_Files/file5.txt'), 
+    readString(Str,_), 
+    seen,
+    splitString(Str, " ", Words),
+    ruSort(Words, [], NewWords),
+    writeString(NewWords),!.
+
+
+ruSort(OriginList, List, Ans) :-
+    filterW(OriginList, Ans1),
+    filterB(OriginList, Ans2),
+    filterR(OriginList, Ans3),
+    appendString(List, Ans1, List1),
+    appendString(List1, Ans2, List2),
+    appendString(List2, Ans3, List3),
+    equelList(List3, Ans).
+
+equelList(Ans, Ans).
+
+
+filterW([H|T], Ans) :-
+    filterW([H|T], [], Ans),!.
+
+filterW([H|T], List, Ans) :-
+    (filterString(H, "w", List1),
+    count(List1, Count),
+    Count > 0,
+    appendString(List, H, NewList),
+    appendString(NewList, [32], NewList2),
+    filterW(T, NewList2, Ans));
+    filterW(T, List, Ans).
+
+filterW([], Ans, Ans).
+
+
+
+filterB([H|T], Ans) :-
+    filterB([H|T], [], Ans),!.
+
+filterB([H|T], List, Ans) :-
+    (filterString(H, "b", List1),
+    count(List1, Count),
+    Count > 0,
+    appendString(List, H, NewList),
+    appendString(NewList, [32], NewList2),
+    filterB(T, NewList2, Ans));
+    filterB(T, List, Ans).
+
+filterB([], Ans, Ans).
+
+
+
+filterR([H|T], Ans) :-
+    filterR([H|T], [], Ans),!.
+
+filterR([H|T], List, Ans) :-
+    (filterString(H, "r", List1),
+    count(List1, Count),
+    Count > 0,
+    appendString(List, H, NewList),
+    appendString(NewList, [32], NewList2),
+    filterR(T, NewList2, Ans));
+    filterR(T, List, Ans).
+
+filterR([], Ans, Ans).
+
+
+
+filterString([H|T], Char, Ans):-
+    char_code(Char, Code),
+    filterString([H|T], Code, [], Ans),!.
+
+filterString([Char|T], Char, List, Ans) :-
+    appendString(List, [Char], NewList),
+    filterString(T, Char, NewList, Ans).
+
+filterString([_|T], Char, List, Ans) :-
+    filterString(T, Char, List, Ans).
+
+filterString([], _, Ans, Ans).
