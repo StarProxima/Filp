@@ -182,7 +182,7 @@ readStringList(List,List,1) :- !.
 
 readStringList(Cur_list,List,0) :- 
     readString(A,_,Flag), 
-    (not(A = []), append(Cur_list,[A],C_l),
+    (not(A = []), appendString(Cur_list,[A],C_l),
     readStringList(C_l,List,Flag); 
     readStringList(Cur_list,List,Flag)),!.
 
@@ -278,6 +278,35 @@ writeStringMoreA([H|T], Avg) :-
 writeStringMoreA([_|T], Avg) :- writeStringMoreA(T, Avg), !.
 
 writeStringMoreA([], _) :- !.
+
+% 2.4
+
+task2_4 :- 
+    see('LR14_Files/file3.txt'), 
+    readStringList(StringList), 
+    seen, 
+    stringsListToString(StringList, BigString), 
+    mostCommonWordList(BigString, MF), 
+    writeString(MF).
+
+
+mostCommonWordList(Words, Result) :- 
+    mostCommonWord(Words, Words, 0, [], Result).
+
+
+stringsListToString(StrList, Result) :- 
+    stringsListToString(StrList, [], Result).
+
+stringsListToString([H|T], CurList, Result) :- 
+    splitString(H, " ", StrWords), 
+    appendString(CurList, StrWords, NewList),
+    stringsListToString(T, NewList, Result), !.
+
+stringsListToString([], Result, Result) :- !.
+
+
+
+
 
 
 
