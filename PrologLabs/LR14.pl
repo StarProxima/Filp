@@ -255,15 +255,15 @@ task2_3 :-
 
 
 
-countCharacterList(List, Sym, Result) :- 
-    countCharacterList(List, Sym, 0, Result),!.
+countCharacterList(List, Char, Ans) :- 
+    countCharacterList(List, Char, 0, Ans),!.
 
-countCharacterList([H|T], Sym, CurCnt, Result) :- 
-    countCharacter(H, Sym, Cnt), 
-    NewCnt is CurCnt + Cnt, 
-    countCharacterList(T, Sym, NewCnt, Result),!.
+countCharacterList([H|T], Char, Count, Ans) :- 
+    countCharacter(H, Char, Count1), 
+    NewCount is Count + Count1, 
+    countCharacterList(T, Char, NewCount, Ans),!.
 
-countCharacterList([], _, Result, Result) :- !.
+countCharacterList([], _, Ans, Ans) :- !.
 
 
 
@@ -286,27 +286,69 @@ task2_4 :-
     readStringList(StringList), 
     seen, 
     stringsListToString(StringList, BigString), 
-    mostCommonWordList(BigString, MF), 
-    writeString(MF).
+    mostCommonWordList(BigString, Word), 
+    writeString(Word).
 
 
-mostCommonWordList(Words, Result) :- 
-    mostCommonWord(Words, Words, 0, [], Result).
+mostCommonWordList(Words, Ans) :- 
+    mostCommonWord(Words, Words, 0, [], Ans).
 
 
-stringsListToString(StrList, Result) :- 
-    stringsListToString(StrList, [], Result).
+stringsListToString(StrList, Ans) :- 
+    stringsListToString(StrList, [], Ans).
 
-stringsListToString([H|T], CurList, Result) :- 
+stringsListToString([H|T], List, Ans) :- 
     splitString(H, " ", StrWords), 
-    appendString(CurList, StrWords, NewList),
-    stringsListToString(T, NewList, Result), !.
+    appendString(List, StrWords, NewList),
+    stringsListToString(T, NewList, Ans), !.
 
-stringsListToString([], Result, Result) :- !.
+stringsListToString([], Ans, Ans) :- !.
+
+% 2.5
+
+task2_5 :- 
+    see('LR14_Files/file4.txt'), 
+    readStringList(StrList), 
+    seen, 
+    stringsListToString(StrList, Words), 
+    repeatingWords(Words, RepWords),
+    tell('LR14_Files/outFile2_5.txt'), 
+    writeNoRepeatingWordsStrings(StrList, RepWords), 
+    told. 
+
+
+inList([X|_], X).
+inList([_|T] ,X) :- inList(T, X).
+
+containsList(List, [H|_]) :- inList(List, H), !.
+containsList(List, [_|T]) :- containsList(List, T).
 
 
 
+repeatingWords(Words, Ans) :- 
+    repeatingWords(Words, [], [], Ans).
+
+repeatingWords([H|T], List, RepList, Ans) :- 
+    inList(List, H), 
+    appendString(List, [H], NewList),
+    appendString(RepList, [H], NewRepList),  
+    repeatingWords(T, NewList, NewRepList, Ans),!.
+
+repeatingWords([H|T], List, RepList, Ans) :- 
+    appendString(List, [H], NewList), 
+    repeatingWords(T, NewList, RepList, Ans),!.
+
+repeatingWords([], _, Ans, Ans) :- !.
 
 
 
+writeNoRepeatingWordsStrings([H|T], RepWords) :- 
+    splitString(H, " ", Words), 
+    not(containsList(Words, RepWords)), 
+    writeString(H), nl, 
+    writeNoRepeatingWordsStrings(T, RepWords), !.
 
+writeNoRepeatingWordsStrings([_|T], RepWords) :- 
+    writeNoRepeatingWordsStrings(T, RepWords), !.
+
+writeNoRepeatingWordsStrings([], _) :- !.
