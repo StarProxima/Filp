@@ -355,7 +355,7 @@ writeNoRepeatingWordsStrings([], _) :- !.
 
 % 3 - 3
 
-task3_3 :- 
+task3 :- 
     readString(Str, _),
     splitString(Str, " ", Words),
     randomSortList(Words, NewWords),
@@ -430,3 +430,22 @@ randomSortList([H|T], CurIndex, MaxIndex, Length, Ans) :-
     randomSortList(NewList, NewCurIndex, MaxIndex, Length, Ans).
 
 randomSortList(Ans, _, _, _, Ans).
+
+% 4 - 8
+
+task4 :- 
+    readString(Str, _),
+    splitString(Str, " ", Words),
+    countUnevenWords(Words, 0, Count),
+    write(Count),!.
+
+countUnevenWords([H|T], Count, Ans) :-
+    count(H, Count1),
+    0 is Count1 mod 2,
+    NewCount is Count + 1,
+    countUnevenWords(T, NewCount, Ans).
+
+countUnevenWords([_|T], Count, Ans) :-
+    countUnevenWords(T, Count, Ans).
+
+countUnevenWords([], Ans, Ans).
