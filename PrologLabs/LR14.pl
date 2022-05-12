@@ -551,6 +551,8 @@ task6 :-
     aWrite(List, K), nl, nl, nl,
     write("Подмножества: "), nl, nl,
     subSetWrite(List), nl, nl, nl,
+    write("Сочетания из N по K: "), nl, nl,
+    cWrite(List, K), nl, nl, nl,
     told.
 
 readList(0, []) :- !.
@@ -635,3 +637,24 @@ subSet([_|SetTail], SubSet) :-
     subSet(SetTail, SubSet).
 
 subSet([], []).
+
+
+
+% 6.5 Сочетания из N по K
+
+cWrite(List, K) :-
+    not(cWriteInternal(List, K)).
+
+cWriteInternal(List, K) :-
+    c(List, K, C), 
+    write(C), nl, fail.
+
+c(_, 0, []) :- !.
+
+c([Elem|SetTail], K, [Elem|SubSetTail]) :- 
+    NewK is K-1, 
+    c(SetTail, NewK, SubSetTail).
+
+c([_|SetTail], K, SubSet) :- 
+    c(SetTail, K, SubSet).
+
