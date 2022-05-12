@@ -542,27 +542,35 @@ task6 :-
     readList(N, List),
     read(K), 
     tell('LR14_Files/outFile6.txt'),
-    write(List), write(" K = "), write(K), nl,
-    write("Размещения с N по K повторениями: "), nl, 
-    not(arrangementWithRepetitions(List, K)), nl,
+    write(List), write(" K = "), write(K), nl, nl, nl,
+    write("Размещения с N по K с повторениями: "), nl, nl,
+    aRepWrite(List, K), nl, nl, nl,
     told.
 
 readList(0, []) :- !.
 readList(I, [X|T]) :- read(X), I1 is I - 1, readList(I1, T).
 
-% 6.1 - Размещения C N по K с повторениями
 
-arrangementWithRepetitions(_, 0, Ans, Ans) :- !. 
 
-arrangementWithRepetitions(List, K, CurList, Ans) :- 
-    inList(List, X), 
-    K1 is K - 1, 
-    arrangementWithRepetitions(List, K1, [X|CurList], Ans). 
+% 6.1 - Размещения из N по K с повторениями
 
-arrangementWithRepetitions(List, K, Ans) :- 
-    arrangementWithRepetitions(List, K, [], Ans).
+aRepWrite(List, K) :- 
+    not(aRepWriteInternal(List, K)).
 
-arrangementWithRepetitions(List, K) :- 
-    arrangementWithRepetitions(List, K, Perm), 
-    write("\t"), 
+aRepWriteInternal(List, K) :- 
+    aRep(List, K, Perm), 
     write(Perm), nl, fail.
+
+aRep(List, K, Ans) :- 
+    aRep(List, K, [], Ans).
+
+aRep(List, K, CurList, Ans) :-
+    K > 0, 
+    inList(List, X), 
+    NewK is K - 1,
+    aRep(List, NewK, [X|CurList], Ans). 
+
+aRep(_, 0, Ans, Ans) :- !.
+
+
+
