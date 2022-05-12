@@ -543,8 +543,10 @@ task6 :-
     read(K), 
     tell('LR14_Files/outFile6.txt'),
     write(List), write(" K = "), write(K), nl, nl, nl,
-    write("Размещения с N по K с повторениями: "), nl, nl,
+    write("Размещения с повторениями из N по K: "), nl, nl,
     aRepWrite(List, K), nl, nl, nl,
+    write("Размещения из N по K: "), nl, nl,
+    aWrite(List, K), nl, nl, nl,
     told.
 
 readList(0, []) :- !.
@@ -558,8 +560,8 @@ aRepWrite(List, K) :-
     not(aRepWriteInternal(List, K)).
 
 aRepWriteInternal(List, K) :- 
-    aRep(List, K, Perm), 
-    write(Perm), nl, fail.
+    aRep(List, K, A), 
+    write(A), nl, fail.
 
 aRep(List, K, Ans) :- 
     aRep(List, K, [], Ans).
@@ -573,4 +575,29 @@ aRep(List, K, CurList, Ans) :-
 aRep(_, 0, Ans, Ans) :- !.
 
 
+
+% 6.3 Размещения из N по K
+
+inListNoRep([H|T],H,T).
+inListNoRep([H|T],Elem,[H|Tail]):-inListNoRep(T,Elem,Tail).
+
+
+
+aWrite(List, K) :-
+    not(aWriteInternal(List, K)).
+
+aWriteInternal(List, K) :- 
+    a(List, K, A), 
+    write(A), nl, fail.
+
+a(List, K, Ans) :- 
+    a(List, K, [], Ans).
+
+a(List, K, CurPerm, Ans) :-
+    K > 0,
+    inListNoRep(List, X, NewList), 
+    NewK is K - 1, 
+    a(NewList, NewK, [X|CurPerm], Ans).
+
+a(_, 0, Ans, Ans) :- !.
 
