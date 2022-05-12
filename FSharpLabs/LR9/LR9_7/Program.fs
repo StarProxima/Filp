@@ -15,12 +15,9 @@ let textBox1 = new TextBox(Text="0", Left=10, Top=30, Width=55, Height=20)
 let labelAns = new Label (Text="0",Left = 200,Top=10,Width=400,Height=50)
 let button = new  Button (Text = "Посчитать", Left=100,Top=10,Width=80,Height=50)
 
-
-
 form.Controls.Add(labelAns);
 form.Controls.Add(button);
 form.Controls.Add(labelX);
-
 form.Controls.Add(textBox1);
 
 let count _ = 

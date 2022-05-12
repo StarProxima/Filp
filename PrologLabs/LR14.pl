@@ -534,3 +534,35 @@ filterString([_|T], Char, List, Ans) :-
     filterString(T, Char, List, Ans).
 
 filterString([], _, Ans, Ans).
+
+% 6.1
+
+task6 :- 
+    read(N),
+    readList(N, List),
+    read(K), 
+    tell('LR14_Files/outFile6.txt'),
+    write(List), write(" K = "), write(K), nl,
+    write("Размещения с N по K повторениями: "), nl, 
+    not(arrangementWithRepetitions(List, K)), nl,
+    told.
+
+readList(0, []) :- !.
+readList(I, [X|T]) :- read(X), I1 is I - 1, readList(I1, T).
+
+% 6.1 - Размещения C N по K с повторениями
+
+arrangementWithRepetitions(_, 0, Ans, Ans) :- !. 
+
+arrangementWithRepetitions(List, K, CurList, Ans) :- 
+    inList(List, X), 
+    K1 is K - 1, 
+    arrangementWithRepetitions(List, K1, [X|CurList], Ans). 
+
+arrangementWithRepetitions(List, K, Ans) :- 
+    arrangementWithRepetitions(List, K, [], Ans).
+
+arrangementWithRepetitions(List, K) :- 
+    arrangementWithRepetitions(List, K, Perm), 
+    write("\t"), 
+    write(Perm), nl, fail.
