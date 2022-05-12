@@ -549,6 +549,8 @@ task6 :-
     pWrite(List), nl, nl, nl,
     write("Размещения из N по K: "), nl, nl,
     aWrite(List, K), nl, nl, nl,
+    write("Подмножества: "), nl, nl,
+    subSetWrite(List), nl, nl, nl,
     told.
 
 readList(0, []) :- !.
@@ -615,3 +617,21 @@ a(List, K, CurPerm, Ans) :-
 
 a(_, 0, Ans, Ans) :- !.
 
+
+
+% 6.4 Подмножества
+
+subSetWrite(List) :-
+    not(subSetWriteInternal(List)).
+
+subSetWriteInternal(List) :- 
+    subSet(List, SubSet), 
+    write(SubSet), nl, fail.
+
+subSet([Elem|SetTail], [Elem|SubSetTail]) :- 
+    subSet(SetTail, SubSetTail).
+
+subSet([_|SetTail], SubSet) :- 
+    subSet(SetTail, SubSet).
+
+subSet([], []).
