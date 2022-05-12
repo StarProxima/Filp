@@ -545,6 +545,8 @@ task6 :-
     write(List), write(" K = "), write(K), nl, nl, nl,
     write("Размещения с повторениями из N по K: "), nl, nl,
     aRepWrite(List, K), nl, nl, nl,
+    write("Перестановки из N: "), nl, nl,
+    pWrite(List), nl, nl, nl,
     write("Размещения из N по K: "), nl, nl,
     aWrite(List, K), nl, nl, nl,
     told.
@@ -573,6 +575,18 @@ aRep(List, K, CurList, Ans) :-
     aRep(List, NewK, [X|CurList], Ans). 
 
 aRep(_, 0, Ans, Ans) :- !.
+
+
+
+% 6.2 Перестановки из N
+
+pWrite(List) :-
+    count(List, K),
+    aWrite(List, K).
+
+p(List, Ans) :-
+    count(List, K),
+    a(List, K, Ans).
 
 
 
