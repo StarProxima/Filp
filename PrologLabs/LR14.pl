@@ -542,7 +542,7 @@ task6 :-
     readList(N, List),
     read(K), 
     tell('LR14_Files/outFile6.txt'),
-    write(List), write(" K = "), write(K), nl, nl, nl,
+    write(List), nl, write(" K = "), write(K), nl, nl, nl, nl,
     write("Размещения с повторениями из N по K: "), nl, nl,
     aRepWrite(List, K), nl, nl, nl,
     write("Перестановки из N: "), nl, nl,
@@ -553,6 +553,8 @@ task6 :-
     subSetWrite(List), nl, nl, nl,
     write("Сочетания из N по K: "), nl, nl,
     cWrite(List, K), nl, nl, nl,
+    write("Сочетания с повторениями из N по K: "), nl, nl,
+    cRepWrite(List, K), nl, nl, nl,
     told.
 
 readList(0, []) :- !.
@@ -657,4 +659,24 @@ c([Elem|SetTail], K, [Elem|SubSetTail]) :-
 
 c([_|SetTail], K, SubSet) :- 
     c(SetTail, K, SubSet).
+
+
+
+% 6.6 Сочетания с повторениями из N по K
+
+cRepWrite(List, K) :-
+    not(cRepWriteInternal(List, K)).
+
+cRepWriteInternal(List, K) :-
+    cRep(List, K, C), 
+    write(C), nl, fail.
+
+cRep(_, 0, []) :- !.
+
+cRep([Elem|SetTail], K, [Elem|SubSetTail]) :- 
+    NewK is K-1, 
+    cRep([Elem|SetTail], NewK, SubSetTail).
+
+cRep([_|SetTail], K, SubSet) :- 
+    cRep(SetTail, K, SubSet).
 
