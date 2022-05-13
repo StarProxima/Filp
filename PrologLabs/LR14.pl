@@ -680,3 +680,22 @@ cRep([Elem|SetTail], K, [Elem|SubSetTail]) :-
 cRep([_|SetTail], K, SubSet) :- 
     cRep(SetTail, K, SubSet).
 
+
+
+% 7
+
+task7Internal :-
+    Positions = [0,1,2,3,4],
+    Word = [_, _, _, _, _],
+    c(Positions, 2, [PosA, PosA2]),
+    valueByIndex(Word, PosA, a),
+    valueByIndex(Word, PosA2, a),
+    inListNoRep(Positions, PosA, PositionsNoA), 
+    inListNoRep(PositionsNoA, PosA2, [Pos1, Pos2, Pos3]),
+    aRep([b,c,d,e,f], 3, [Char1, Char2, Char3]), 
+    valueByIndex(Word, Pos1, Char1),
+    valueByIndex(Word, Pos2, Char2),
+    valueByIndex(Word, Pos3, Char3), 
+    write(Word), nl, fail.
+
+task7 :- tell('LR14_Files/outFile7.txt'), not(task7Internal), told.
