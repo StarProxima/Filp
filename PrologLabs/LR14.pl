@@ -687,9 +687,10 @@ cRep([_|SetTail], K, SubSet) :-
 task7 :- tell('LR14_Files/outFile7.txt'), not(task7Internal), told.
 
 task7Internal :-
+
     Positions = [0,1,2,3,4],
     Word = [_, _, _, _, _],
-    
+
     c(Positions, 2, [PosA1, PosA2]),
 
     valueByIndex(Word, PosA1, a),
@@ -713,6 +714,7 @@ task7Internal :-
 task8 :- tell('LR14_Files/outFile8.txt'), not(task8Internal), told.
 
 task8Internal :-
+
     Positions = [0,1,2,3,4],
     Word = [_, _, _, _, _],
 
@@ -732,13 +734,17 @@ task8Internal :-
 
     write(Word), nl, fail.
 
+
+
 % 9
 
 task9 :- tell('LR14_Files/outFile9.txt'), not(task9Internal), told.
 
 task9Internal :-
+
     Positions = [0,1,2,3,4],
     Word = [_, _, _, _, _],
+
     c(Positions, 2, [PosRep2Char1, PosRep2Char2]),
 
     Alphabet = [a,b,c,d,e,f],
@@ -747,8 +753,8 @@ task9Internal :-
     valueByIndex(Word, PosRep2Char1, Rep2Char),
     valueByIndex(Word, PosRep2Char2, Rep2Char),
 
-    inListNoRep(Positions, PosRep2Char1, PositionsNoA), 
-    inListNoRep(PositionsNoA, PosRep2Char2, [Pos1, Pos2, Pos3]),
+    inListNoRep(Positions, PosRep2Char1, PositionsNoRep2Char), 
+    inListNoRep(PositionsNoRep2Char, PosRep2Char2, [Pos1, Pos2, Pos3]),
     inListNoRep(Alphabet, Rep2Char, AlphabetNoRep2Char),
 
     a(AlphabetNoRep2Char, 3, [Char1, Char2, Char3]), 
@@ -756,6 +762,46 @@ task9Internal :-
     valueByIndex(Word, Pos1, Char1),
     valueByIndex(Word, Pos2, Char2),
     valueByIndex(Word, Pos3, Char3),
+
+    write(Word), nl, fail.
+
+
+
+% 9
+
+task10 :- tell('LR14_Files/outFile10.txt'), not(task10Internal), told.
+
+task10Internal :-
+
+    Positions = [0,1,2,3,4,5],
+    Word = [_, _, _, _, _, _],
+
+    c(Positions, 2, [Pos1Rep2Char1, Pos2Rep2Char1]),
+    
+    inListNoRep(Positions, Pos1Rep2Char1, PositionsNoRep2Char1), 
+    inListNoRep(PositionsNoRep2Char1, Pos2Rep2Char1, Positions2NoRep2Char1),
+
+    c(Positions2NoRep2Char1, 2, [Pos1Rep2Char2, Pos2Rep2Char2]),
+
+    inListNoRep(Positions2NoRep2Char1, Pos1Rep2Char2, PositionsNoRep2Char2), 
+    inListNoRep(PositionsNoRep2Char2, Pos2Rep2Char2, [Pos1, Pos2]),
+
+    Alphabet = [a,b,c,d,e,f],
+
+    c(Alphabet, 2, [Rep2Char1, Rep2Char2]),
+
+    inListNoRep(Alphabet, Rep2Char1, AlphabetNoRep2Char1),
+    inListNoRep(AlphabetNoRep2Char1, Rep2Char2, Alphabet2NoRep2Char2),
+
+    valueByIndex(Word, Pos1Rep2Char1, Rep2Char1),
+    valueByIndex(Word, Pos2Rep2Char1, Rep2Char1),
+    valueByIndex(Word, Pos1Rep2Char2, Rep2Char2),
+    valueByIndex(Word, Pos2Rep2Char2, Rep2Char2),
+
+    a(Alphabet2NoRep2Char2, 2, [Char1, Char2]), 
+
+    valueByIndex(Word, Pos1, Char1),
+    valueByIndex(Word, Pos2, Char2),
 
     write(Word), nl, fail.
 
