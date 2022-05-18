@@ -419,7 +419,7 @@ swapInList(_, [], _, _, _, Ans, Ans).
 
 randomSortList([H|T], Ans) :-
     count([H|T], Length),
-    randomSortList([H|T], 0, 5, Length, Ans),!.
+    randomSortList([H|T], 0, 100, Length, Ans),!.
 
 randomSortList([H|T], CurIndex, MaxIndex, Length, Ans) :-
     NewCurIndex is CurIndex + 1,
@@ -767,7 +767,7 @@ task9Internal :-
 
 
 
-% 9
+% 10
 
 task10 :- tell('LR14_Files/outFile10.txt'), not(task10Internal), told.
 

@@ -50,7 +50,7 @@ parent(zhdana,zdislava).
 parent(zhdana,zlatomir).
 
 % 11
-daughter(X,Y):- parent(Y,X),woman(X).
+daughter(X,Y):- parent(Y,X), woman(X).
 daughter(X) :- daughter(Y,X), write(Y).
 
 % 12 
